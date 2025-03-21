@@ -1,22 +1,36 @@
+---
+import "../styles/global.css";
+import "@fontsource/roboto";
+import "@fontsource/nunito";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
 <!doctype html>
-<html lang="en">
+<html lang="es" class="dark">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>GDG El Alto</title>
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="GDG El Alto" />
+		<link rel="manifest" href="/site.webmanifest" /> 
+		<script>
+			import "@material/web/all.js";
+			import {styles} from '@material/web/typography/md-typescale-styles.js';
+
+			if (styles.styleSheet) {
+				document.adoptedStyleSheets.push(styles.styleSheet);
+			}
+		</script>
 	</head>
 	<body>
+		<Navbar />
 		<slot />
+		<Footer />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

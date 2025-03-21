@@ -1,0 +1,71 @@
+---
+const menuLinks =  [
+    {
+        label: "Speakers",
+        href: "#speakers",
+    },
+    {
+        label: "Agenda",
+        href: "#agenda",
+    },
+    {
+        label: "Faq",
+        href: "#faq",
+    }
+]
+---
+<header class="header">
+    <div class="max-w-5xl w-full mx-auto px-6 py-2 flex items-center justify-between gap-4">
+        <a href="/" class="inline-flex gap-2 items-center ">
+            <img src="/logo-transparent.png" alt="" class="h-8" />
+            <span class="text-sm font-display">Women Techmakers</span>
+        </a>
+        <nav class="ml-auto hidden md:block">
+            <ul class="flex items-center gap-2">
+                {menuLinks.map((item) => (
+                    <li>
+                        <a href={item.href} class="py-2 px-1 block text-base link-text transition-colors">{item.label}</a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="btn btn-primary-filled transition-all">Inscribete</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+ 
+<style>
+    .header {
+        background-color: var(--md-sys-color-secondary-container);
+        border-bottom: 2px solid var(--md-sys-color-primary-container);
+    }
+    .link-text {
+        color: var(--md-sys-color-primary);
+    }
+    .link-text:hover {
+        color: var(--md-sys-color-secondary);
+    }
+    .btn {
+        font-size: 14px;
+        line-height: 20px;
+        border-radius: 100px;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+    }
+    .btn:hover {
+        opacity: 0.8;
+    }
+    .btn:active {
+        opacity: 0.7;
+    }
+    .btn-primary-filled {
+        background-color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-primary);
+    }
+</style>

@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+const networkLinks = [
+    {
+        icon: "simple-icons--facebook",
+        href: "https://facebook.com"
+    },
+    {
+        icon: "simple-icons:tiktok",
+        href: "https://facebook.com"
+    },
+]
+---
+
+<footer>
+    <ul class="max-w-5xl mx-auto flex items-center flex-wrap justify-center mb-1 gap-1">
+        {networkLinks.map((item) => (
+            <li>
+                <a href={item.href} target="_blank" class="p-2 block rounded-md">
+                    <Icon name={item.icon} />
+                </a>
+            </li>
+        ))}
+    </ul>
+    <div class="text-center">
+        <p class="text-[#57BEA8] font-semibold">Gdg El Alto</p>
+        <p class="text-sm text-[#5D8EEE]">Google Developer Group El Alto</p>
+        <p class="text-sm">2025</p>
+    </div>
+</footer>
