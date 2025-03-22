@@ -15,12 +15,12 @@ interface Props {
 
 const title = Astro.props.title ?? "Google Developers Group El Alto | GDG El Alto";
 const description = Astro.props.description ?? "¡Bienvenid@ a Google Developers El Alto! Somos una comunidad apasionada por la tecnología y el desarrollo de software en la  ciudad de El Alto. Nuestro objetivo es reunir a desarrolladores, estudiantes y entusiastas de la tecnología para aprender, colaborar y compartir conocimientos relacionados con las herramientas, plataformas y tecnologías de Google.";
-const image = Astro.props.image;
+const image = Astro.props.image ?? "/WTM-IWD2025-HeroImages-16x9-v2.webp";
 const type = Astro.props.image ?? "website";
 
 ---
 <!doctype html>
-<html lang="es">
+<html lang="es-BO">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
