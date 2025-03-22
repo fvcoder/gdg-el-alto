@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components"
+
 const menuLinks =  [
     {
         label: "Speakers",
@@ -29,10 +31,16 @@ const menuLinks =  [
                 ))}
             </ul>
         </nav>
+        <div>
+            <button data-button-id="dark-toggle" class="py-2 px-1 cursor-pointer group light">
+                <Icon name="mdi:moon-and-stars" class="w-6 h-6 link-text group-[.light]:hidden" />
+                <Icon name="mdi:white-balance-sunny" class="w-6 h-6 link-text group-[.dark]:hidden" />
+            </button>
+        </div>
         <nav>
             <ul>
                 <li>
-                    <a href="#" class="btn btn-primary-filled transition-all">Inscribete</a>
+                    <a href="#" class="btn btn-primary-filled transition-all">Regístrate</a>
                 </li>
             </ul>
         </nav>
@@ -69,3 +77,34 @@ const menuLinks =  [
         color: var(--md-sys-color-on-primary);
     }
 </style>
+
+<script>
+    const e = document.querySelector('[data-button-id="dark-toggle"]')
+    if (e) {
+        const isDark = localStorage.getItem('isTheme') ?? false
+
+        if (isDark) {
+            document.documentElement.classList.add('dark')
+            e.classList.add('dark')
+            e.classList.remove('light')
+        } else {
+            e.classList.add('light')
+            e.classList.remove('dark')
+        }
+
+        e.addEventListener('click', () => {
+            const isDark = !!localStorage.getItem('isTheme')
+            if (isDark) {
+                localStorage.removeItem('isTheme')
+                document.documentElement.classList.remove('dark')
+                e.classList.add('light')
+                e.classList.remove('dark')
+            } else {
+                localStorage.setItem('isTheme', 'true')
+                document.documentElement.classList.add('dark')
+                e.classList.add('dark')
+                e.classList.remove('light')
+            }
+        })
+    }
+</script>
