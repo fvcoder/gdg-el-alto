@@ -5,6 +5,19 @@ import "@fontsource/roboto";
 import "@fontsource/nunito";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	type?: string
+}
+
+const title = Astro.props.title ?? "Google Developers Group El Alto | GDG El Alto";
+const description = Astro.props.description ?? "¡Bienvenid@ a Google Developers El Alto! Somos una comunidad apasionada por la tecnología y el desarrollo de software en la  ciudad de El Alto. Nuestro objetivo es reunir a desarrolladores, estudiantes y entusiastas de la tecnología para aprender, colaborar y compartir conocimientos relacionados con las herramientas, plataformas y tecnologías de Google.";
+const image = Astro.props.image;
+const type = Astro.props.image ?? "website";
+
 ---
 <!doctype html>
 <html lang="es">
@@ -13,8 +26,8 @@ import Footer from "../components/Footer.astro";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Google Developers Group El Alto | GDG El Alto</title>
-		<meta name="description" content="¡Bienvenid@ a Google Developers El Alto! Somos una comunidad apasionada por la tecnología y el desarrollo de software en la  ciudad de El Alto. Nuestro objetivo es reunir a desarrolladores, estudiantes y entusiastas de la tecnología para aprender, colaborar y compartir conocimientos relacionados con las herramientas, plataformas y tecnologías de Google.">
+		<title>{title}</title>
+		<meta name="description" content={description}>
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="shortcut icon" href="/favicon.ico" />
@@ -22,13 +35,22 @@ import Footer from "../components/Footer.astro";
 		<meta name="apple-mobile-web-app-title" content="GDG El Alto" />
 		<link rel="manifest" href="/site.webmanifest" /> 
 		<script>
-			import "@material/web/all.js";
 			import {styles} from '@material/web/typography/md-typescale-styles.js';
 
 			if (styles.styleSheet) {
 				document.adoptedStyleSheets.push(styles.styleSheet);
 			}
 		</script>
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		{image && <meta property="og:image" content={image} />}
+		<meta property="twitter:card" content={image ? "summary_large_image" : "summary"} />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		{image && <meta property="twitter:image" content={image} />}
 	</head>
 	<body class="relative transition-colors font-text">
 		<Navbar />
