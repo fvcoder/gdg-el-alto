@@ -16,4 +16,19 @@ const people = defineCollection({
   }),
 });
 
-export const collections = { people };
+const event = defineCollection({
+  loader: glob({ pattern: "*.json", base: "src/content/event" }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    image: z.string(),
+    faq: z.array(
+      z.object({
+        question: z.string(),
+        answer: z.string(),
+      }),
+    ),
+  }),
+});
+
+export const collections = { people, event };

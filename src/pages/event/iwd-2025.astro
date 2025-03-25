@@ -4,7 +4,9 @@ import Layout from "../../layouts/Layout.astro";
 import { button } from "../../styles/button";
 import { text } from "../../styles/text";
 import { cn } from "../../util/cn";
-import { faq } from "./../../content/faq";
+import { getCollection } from "astro:content";
+
+const event = (await getCollection('event', (e) => e.id === "iwd-2025"))[0];
 
 const calendar = Array.from({ length: 2 }).map((_, i) => {
   return {
@@ -19,7 +21,7 @@ const calendar = Array.from({ length: 2 }).map((_, i) => {
 })
 ---
 
-<Layout>
+<Layout title={event.data.name} description={event.data.description} image={event.data.image}>
   <section class="max-w-5xl mx-auto px-6 py-[4.625rem] text-center">
     <h1 class={cn(text({ style: "displayMedium" }), "max-w-[677px] mx-auto")}>International Women's Day 2025 El Alto: Redefine Possible</h1>
     <p class={cn(text({ style: "bodyMedium"}), "max-w-[677px] mx-auto mt-4")}>La innovación no tiene límites, nosotras los redefinimos</p>
@@ -83,7 +85,7 @@ const calendar = Array.from({ length: 2 }).map((_, i) => {
   <section class="max-w-5xl mx-auto px-6 mt-8">
     <h2 class={cn(text({ style: "displaySmall" }), "mb-8")} id="faq">Preguntas Frecuentes</h2>
     <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {faq.map((f) => (
+      {event.data.faq.map((f) => (
         <li>
           <h4 class={cn(text({ style: "titleMedium" }), "mb-2")}>{f.question}</h4>
           <p class={cn(text({ style: "bodyMedium" }))}>{f.answer}</p>
