@@ -1,0 +1,25 @@
+---
+import { text } from '../styles/text';
+import { cn } from '../util/cn';
+
+interface Props {
+    title: string
+    description?: string
+    image: string
+}
+
+const props = Astro.props;
+---
+<div class="flex items-center gap-2">
+    <div>
+        <img src={props.image} alt={`${props.title} imagen`} class="w-10 rounded-full" />
+    </div>
+    <div class="flex-1">
+        <h4 class={cn(text({ style: "bodyMedium" }))}>{props.title}</h4>
+        {props.description && (
+            <p class={cn(text({ style: "bodySmall" }))}>
+                {props.description}
+            </p>
+        )}
+    </div>
+</div>
