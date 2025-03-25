@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content"
+export async function getStaticPaths() {
+    const schedule = await getCollection('schedule');
+
+    return schedule.map((s) => {
+        return {
+            params: {
+                schedule: s.id,
+            },
+            props: {
+                schedule,
+            }
+        }
+    })
+}
+
+const props = Astro.props;
+---
+<div>{JSON.stringify(props)}</div>
