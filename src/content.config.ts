@@ -22,6 +22,12 @@ const event = defineCollection({
     name: z.string(),
     description: z.string(),
     image: z.string(),
+    sponsors: z.array(
+      z.object({
+        name: z.string(),
+        image: z.string(),
+      }),
+    ),
     faq: z.array(
       z.object({
         question: z.string(),

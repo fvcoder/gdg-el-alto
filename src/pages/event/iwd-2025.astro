@@ -32,10 +32,12 @@ const calendar = Array.from({ length: 2 }).map((_, i) => {
   </section>
   <section class="max-w-5xl mx-auto px-6 text-center space-y-4">
     <p class={cn(text({ style: "bodyMedium" }))}>Con el apoyo de</p>
-    <div class="max-w-[677px] mx-auto flex flex-col sm:flex-row gap-8 items-center justify-between">
-      <div class="h-[50px] w-[150px] aspect-video bg-[#D9D9D9] rounded-[20px]"></div>
-      <div class="h-[50px] w-[150px] aspect-video bg-[#D9D9D9] rounded-[20px]"></div>
-      <div class="h-[50px] w-[150px] aspect-video bg-[#D9D9D9] rounded-[20px]"></div>
+    <div class="max-w-[750px] mx-auto grid grid-cols-1 md:grid-cols-3 place-items-center gap-4">
+      {event.data.sponsors.map((s) => (
+        <div title={s.name}>
+          <img src={s.image} alt={s.name} class="max-h-40 object-contain w-[75%] md:w-auto mx-auto" />
+        </div>
+      ))}
     </div>
   </section>
   <section class="max-w-5xl mx-auto px-6 my-6">
