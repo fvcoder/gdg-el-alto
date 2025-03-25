@@ -1,49 +1,45 @@
 ---
 import { Icon } from "astro-icon/components"
-
+import { cn } from "./../util/cn";
+import { button } from "../styles/button";
 const menuLinks =  [
-    {
-        label: "Speakers",
-        href: "#speakers",
-    },
     {
         label: "Agenda",
         href: "#agenda",
     },
     {
-        label: "Faq",
+        label: "Preguntas Frecuentes",
         href: "#faq",
     }
 ]
+
 ---
 <header class="header">
-    <div class="max-w-5xl w-full mx-auto px-6 py-2 flex items-center justify-between gap-4">
-        <a href="/" class="inline-flex gap-2 items-center ">
-            <img src="/favicon_gdg.webp" alt="" class="h-8" />
-            <div class=""> | </div>
-            <div>
-                <img src="/logo-transparent.png" alt="" class="h-6" />
-            </div>
+    <div class="max-w-5xl w-full mx-auto px-6 py-2 flex items-center justify-between gap-4 h-16">
+        <a href="/" class="inline-flex gap-2 items-center">
+            <img src="/img/logo-iwd-gdg.webp" alt="IWD 2025 & GDG El Alto" class="h-8" >
         </a>
-        <nav class="ml-auto hidden ">
+        <nav class="ml-auto hidden md:block">
             <ul class="flex items-center gap-2">
                 {menuLinks.map((item) => (
                     <li>
-                        <a href={item.href} class="py-2 px-1 block text-base link-text transition-colors">{item.label}</a>
+                        <a href={item.href} class={button()}>{item.label}</a>
                     </li>
                 ))}
             </ul>
         </nav>
-        <div>
-            <button data-button-id="dark-toggle" class="py-2 px-1 cursor-pointer group light">
+        <div class="ml-auto md:ml-0">
+            <button data-button-id="dark-toggle" class="py-2 cursor-pointer group light rounded-full px-2">
                 <Icon name="mdi:moon-and-stars" class="w-6 h-6 link-text group-[.light]:hidden" />
                 <Icon name="mdi:white-balance-sunny" class="w-6 h-6 link-text group-[.dark]:hidden" />
             </button>
         </div>
-        <nav class="hidden">
+        <nav>
             <ul>
                 <li>
-                    <a href="#" class="btn btn-primary-filled transition-all">Regístrate</a>
+                    <a href="#" class={cn(button({ style: "filled", className: "" }))}>
+                        <span>Únete</span>
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -52,8 +48,7 @@ const menuLinks =  [
  
 <style>
     .header {
-        background-color: var(--md-sys-color-secondary-container);
-        border-bottom: 2px solid var(--md-sys-color-primary-container);
+        background-color: transparent;
     }
     .link-text {
         color: var(--md-sys-color-primary);
