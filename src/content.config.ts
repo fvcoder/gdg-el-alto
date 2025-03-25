@@ -46,6 +46,7 @@ const schedule = defineCollection({
   schema: z.object({
     name: z.string(),
     description: z.string(),
+    image: z.string(),
     stageId: reference("stage"),
     eventId: reference("event"),
     speakers: z.array(reference("people")),
@@ -76,6 +77,7 @@ const stage = defineCollection({
   loader: glob({ pattern: "*.json", base: "src/content/stage" }),
   schema: z.object({
     name: z.string(),
+    direction: z.string(),
   }),
 });
 
