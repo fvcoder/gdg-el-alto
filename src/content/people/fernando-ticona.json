@@ -1,0 +1,26 @@
+{
+    "name": "Fernando Ticona",
+    "bio": "Desarrolador full-stack en el ecosistema javaScript, freelancer y con una pasion increible para enseñar.",
+    "networks": [
+        {
+            "provider": "tiktok",
+            "username": "fvcoder",
+            "url": "https://tiktok.com/@fvcoder"
+        },
+        {
+            "provider": "facebook",
+            "username": "fvcoder",
+            "url": "https://www.facebook.com/fvcoder"
+        },
+        {
+            "provider": "instagram",
+            "username": "fvcoder",
+            "url": "https://www.instagram.com/fvcoder"
+        },
+        {
+            "provider": "youtube",
+            "username": "fvcoder",
+            "url": "https://www.youtube.com/@fvcoder"
+        }
+    ]
+}

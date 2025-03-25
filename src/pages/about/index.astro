@@ -1,0 +1,7 @@
+
+---
+import { getCollection } from "astro:content"
+const people = await getCollection('people');
+---
+
+<div>{JSON.stringify(people)}</div>
