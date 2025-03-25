@@ -1,7 +1,15 @@
 ---
 import { getCollection } from "astro:content"
+import Layout from "../../layouts/Layout.astro";
+import { button } from "../../styles/button";
+import { text } from "../../styles/text";
+import { cn } from "../../util/cn";
+import InfoUser from "../../components/infoUser.astro";
+
 export async function getStaticPaths() {
+    const people = await getCollection("people")
     const schedule = await getCollection('schedule');
+    const events = await getCollection("event");
 
     return schedule.map((s) => {
         return {
@@ -9,7 +17,9 @@ export async function getStaticPaths() {
                 schedule: s.id,
             },
             props: {
-                schedule,
+                schedule: s,
+                speakers: s.data.speakers.map((p) => people.find((x) => p.id === x.id)),
+                event: events.find((e) => e.id === s.data.eventId.id)
             }
         }
     })
@@ -17,4 +27,60 @@ export async function getStaticPaths() {
 
 const props = Astro.props;
 ---
-<div>{JSON.stringify(props)}</div>
+<Layout>
+    <div class="space-y-6">
+        <section class="max-w-5xl px-6 mx-auto mt-4">
+            <h1 class={cn(text({ style: "displayMedium" }), "mb-2")}>{props.schedule.data.name}</h1>
+            <p class={cn(text({ style: "bodyMedium" }))}>{props.schedule.data.description}</p>
+            <div class="flex items-center justify-center md:justify-start mt-4 gap-2">
+                <a href="https://gdg.community.dev/events/details/google-gdg-el-alto-presents-international-womens-day-2025-el-alto-redefine-possible/" target="_blank" class={cn(button({ style: "filled" }))}>Reserva un lugar</a>
+                <a href="https://maps.app.goo.gl/RoWhDxRMmZygx97G6" target="_blank" class={cn(button({ style: "outlined" }))}>Abrir en Google Maps</a>
+            </div>
+        </section>
+        <section class="max-w-5xl px-6 mx-auto mt-4">
+            <h2 class={cn(text({ style: "displaySmall" }), "mb-2")}>Speaker{props.speakers.length === 1 ? "" : "s"}</h2>
+            <div class="flex items-center gap-4 flex-wrap">
+                {props.speakers.map((s) => (
+                    <a href={`/about/${s?.id}`}>
+                        <InfoUser
+                            title={s?.data.name ?? ""}
+                            description={s?.data.jobTitle}
+                            image={s?.data.image ?? ""}
+                        />
+                    </a>
+                ))}
+            </div>
+        </section>
+        {props.schedule.data.resource.length !== 0 && (
+            <section class="max-w-5xl px-6 mx-auto mt-4">
+                <h2 class={cn(text({ style: "displaySmall" }), "mb-2")}>Recursos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {props.schedule.data.resource.map((r) => (
+                        <a href="#" target="_blank" class="block">
+                            <div class="bg-neutral-400 rounded-[12px]">
+                                <img src={r.image} alt={`${r.fileName} preview`} class="w-full aspect-video rounded-[12px] object-cover"/>
+                            </div>
+                            <div class="mt-1">
+                                <h4 class={cn(text({ style: "bodyMedium" }), "font-display")}>{r.fileName}</h4>
+                                <p class={cn(text({ style: "bodySmall" }))}>{r.size}</p>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </section>
+        )}
+        <section class="max-w-5xl px-6 mx-auto mt-4">
+            <h2 class={cn(text({ style: "displaySmall" }), "mb-4")}>Aceca del Evento</h2>
+            <div class="flex flex-col md:flex-row items-center gap-4">
+                <div class="flex-none">
+                    <img src={props.event?.data.logo} alt={`${props.event?.data.name} imagen`} class="size-[150px] rounded-full object-cover">
+                </div>
+                <div>
+                    <h3 class={cn(text({ style: "headlineMedium" }))}>{props.event?.data.name}</h3>
+                    <p class={cn(text({ style: "bodyMedium" }), "mb-2")}>{props.event?.data.description}</p>
+                    <a href={`/event/${props.event?.id}`} class={cn(button({ style: "tonal" }))}>Conoce mas del evento</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</Layout>

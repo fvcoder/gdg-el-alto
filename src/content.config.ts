@@ -7,6 +7,7 @@ const people = defineCollection({
     name: z.string(),
     bio: z.string(),
     image: z.string(),
+    jobTitle: z.string(),
     networks: z.array(
       z.object({
         provider: z.string(),
@@ -23,6 +24,7 @@ const event = defineCollection({
     name: z.string(),
     description: z.string(),
     image: z.string(),
+    logo: z.string(),
     location: reference("location"),
     sponsors: z.array(
       z.object({
@@ -49,6 +51,14 @@ const schedule = defineCollection({
     speakers: z.array(reference("people")),
     startDate: z.string(),
     endDate: z.string().optional(),
+    resource: z.array(
+      z.object({
+        fileName: z.string(),
+        image: z.string(),
+        url: z.string().url(),
+        size: z.string(),
+      }),
+    ),
   }),
 });
 
