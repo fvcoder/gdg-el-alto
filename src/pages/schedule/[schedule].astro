@@ -117,8 +117,8 @@ const props = Astro.props;
                         <Icon name="mdi:clock-outline" width={40} height={40} />
                     </div>
                     <div>
-                        <p class={cn(text({ style: "bodyMedium" }), "text-[var(--md-sys-color-on-primary)]")}>{new Date(props.schedule.data.startDate).toLocaleString("es-BO", { day: "numeric", month: "long", year: "numeric" })}</p>
-                        <p class={cn(text({ style: "bodySmall" }), "text-[var(--md-sys-color-on-primary)]")}>{new Date(props.schedule.data.startDate).toLocaleString("es-BO", { hour: "numeric", minute: "numeric", hour12: true })}</p>
+                        <p class={cn(text({ style: "bodyMedium" }), "text-[var(--md-sys-color-on-primary)]")}>{new Date(props.schedule.data.startDate).toLocaleString("es-BO", { day: "numeric", month: "long", year: "numeric", timeZone: "America/New_York" })}</p>
+                        <p class={cn(text({ style: "bodySmall" }), "text-[var(--md-sys-color-on-primary)]")}>{new Date(props.schedule.data.startDate).toLocaleString("es-BO", { hour: "numeric", minute: "numeric", hour12: true, timeZone: "America/New_York" })}</p>
                     </div>
                 </div>
             </div>

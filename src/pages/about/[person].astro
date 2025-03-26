@@ -88,7 +88,7 @@ const props = Astro.props;
                     <p class={cn(text({ style: "bodyMedium" }))}>{s.data.description}</p>
                     <InfoUser
                         title={s.event?.data.name ?? "Evento sin nombre"}
-                        description={new Date(s.data.startDate).toLocaleString("es-BO", { day: "numeric", month: "long", year: "numeric" })}
+                        description={new Date(s.data.startDate).toLocaleString("es-BO", { day: "numeric", month: "long", year: "numeric", timeZone: "America/New_York" })}
                         image={s.event?.data.logo ?? ""}
                     />
                 </article>
