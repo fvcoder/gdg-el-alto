@@ -63,7 +63,7 @@ const calendar = stages.map((s) => {
               {c.schedule.map((s) => (
                 <li>
                   <a href={`/schedule/${s.id}`} class="block py-2 px-4">
-                    <User title={s.name} description={new Date(s.startTime).toLocaleString("es-BO", { hour: "numeric", minute: "numeric", hour12: true })} image={s.personImage ?? ""} />
+                    <User title={s.name} description={new Date(s.startTime).toLocaleString("es-BO", { hour: "numeric", minute: "numeric", hour12: true, timeZone: "America/New_York" })} image={s.personImage ?? ""} />
                   </a>
                 </li>  
               ))}

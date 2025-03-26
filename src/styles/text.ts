@@ -16,7 +16,7 @@ export const text = tv({
       bodyMedium:
         "font-text text-pretty leading-[20px] text-[14px] tracking-[0.25px] font-normal text-[var(--md-sys-color-on-surface-variant)]",
       bodySmall:
-        "font-text text-pretty leading-[16px] text-[12px] tracking-[0.4px] font-normal text-[var(--md-sys-color-on-surface-variant)] opacity-60",
+        "font-text text-pretty leading-[16px] text-[12px] tracking-[0.4px] font-normal text-[var(--md-sys-color-on-surface-variant)] opacity-80",
     },
   },
   defaultVariants: {
