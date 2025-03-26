@@ -7,6 +7,8 @@ export const text = tv({
         "font-display text-balance leading-[52px] text-[45px] font-normal text-[var(--md-sys-color-on-surface)]",
       displaySmall:
         "font-display text-balance leading-[44px] text-[36px] font-normal text-[var(--md-sys-color-on-surface)]",
+      headlineMedium:
+        "font-display text-balance leading-[36px] text-[28px] font-normal text-[var(--md-sys-color-on-surface)]",
       titleLarge:
         "font-display text-balance leading-[28px] text-[22px] tracking-[0px] font-normal text-[var(--md-sys-color-on-surface)]",
       titleMedium:

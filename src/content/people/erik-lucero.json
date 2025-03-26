@@ -1,0 +1,28 @@
+{
+    "name": "Erik Lucero",
+    "bio": "Erik Lucero es un Científico de Investigación del Personal en el equipo de Quantum A.I. Con más de una década de experiencia en arquitecturas cuánticas, Erik ha controlado (¡con alta fidelidad!) tanto los 'qubits espinosos' semiconductores como los qubits superconductores. Ha producido una cartera de fotos icónicas que documentan los procesadores cuánticos a lo largo de los años. Recibió un BS con Honores en Ingeniería Eléctrica, un BS con Distinción Magna Cum Laude en Física Aplicada de la Universidad de Colorado y Doctor en Física de la Universidad de California, Santa Bárbara. Erik se unió a Google en 2015.",
+    "image": "https://io.google/2024/speakers/043736e4-77a5-4d40-a763-694b460b406c_240.webp",
+    "jobTitle": "Lead Quantum Engineering, Google",
+    "networks": [
+        {
+            "provider": "tiktok",
+            "username": "fvcoder",
+            "url": "https://tiktok.com/@fvcoder"
+        },
+        {
+            "provider": "facebook",
+            "username": "fvcoder",
+            "url": "https://www.facebook.com/fvcoder"
+        },
+        {
+            "provider": "instagram",
+            "username": "fvcoder",
+            "url": "https://www.instagram.com/fvcoder"
+        },
+        {
+            "provider": "youtube",
+            "username": "fvcoder",
+            "url": "https://www.youtube.com/@fvcoder"
+        }
+    ]
+}

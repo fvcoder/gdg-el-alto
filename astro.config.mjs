@@ -7,6 +7,15 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
   integrations: [icon()],
+  redirects: {
+    "/schedule": {
+      status: 302,
+      destination: "/about",
+    },
+    "/event": {
+      status: 302,
+      destination: "/about",
+    },
+  },
 });

@@ -1,0 +1,127 @@
+---
+import { getCollection } from "astro:content"
+import Layout from "../../layouts/Layout.astro";
+import { button } from "../../styles/button";
+import { text } from "../../styles/text";
+import { cn } from "../../util/cn";
+import InfoUser from "../../components/infoUser.astro";
+import { Icon } from "astro-icon/components";
+
+export async function getStaticPaths() {
+    const people = await getCollection("people")
+    const schedule = await getCollection('schedule');
+    const location = await getCollection("location");
+    const stage = await getCollection("stage");
+    const events = await getCollection("event");
+
+    return schedule.map((s) => {
+        const event = events.find((e) => e.id === s.data.eventId.id)
+
+        return {
+            params: {
+                schedule: s.id,
+            },
+            props: {
+                schedule: s,
+                speakers: s.data.speakers.map((p) => people.find((x) => p.id === x.id)),
+                event,
+                location: location.find((l) => l.id === event?.data.location.id),
+                stage: stage.find((e) => e.id === s.data.stageId.id)
+            }
+        }
+    })
+}
+
+const props = Astro.props;
+---
+<Layout>
+    <div class="max-w-5xl px-6 mx-auto mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <main class="space-y-6 max-w-5xl mx-auto mt-4 md:col-span-2">
+            <section>
+                <h1 class={cn(text({ style: "displayMedium" }), "mb-2")}>{props.schedule.data.name}</h1>
+                <p class={cn(text({ style: "bodyMedium" }))}>{props.schedule.data.description}</p>
+                <div class="flex items-center justify-center md:justify-start mt-4 gap-2">
+                    <a href="https://gdg.community.dev/events/details/google-gdg-el-alto-presents-international-womens-day-2025-el-alto-redefine-possible/" target="_blank" class={cn(button({ style: "filled" }))}>Reserva un lugar</a>
+                    <a href="https://maps.app.goo.gl/RoWhDxRMmZygx97G6" target="_blank" class={cn(button({ style: "outlined" }))}>Abrir en Google Maps</a>
+                </div>
+            </section>
+            <section>
+                <h2 class={cn(text({ style: "displaySmall" }), "mb-2")}>Speaker{props.speakers.length === 1 ? "" : "s"}</h2>
+                <div class="flex items-center gap-4 flex-wrap">
+                    {props.speakers.map((s) => (
+                        <a href={`/about/${s?.id}`}>
+                            <InfoUser
+                                title={s?.data.name ?? ""}
+                                description={s?.data.jobTitle}
+                                image={s?.data.image ?? ""}
+                            />
+                        </a>
+                    ))}
+                </div>
+            </section>
+            {props.schedule.data.resource.length !== 0 && (
+                <section>
+                    <h2 class={cn(text({ style: "displaySmall" }), "mb-2")}>Recursos</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {props.schedule.data.resource.map((r) => (
+                            <a href="#" target="_blank" class="block">
+                                <div class="bg-neutral-400 rounded-[12px]">
+                                    <img src={r.image} alt={`${r.fileName} preview`} class="w-full aspect-video rounded-[12px] object-cover"/>
+                                </div>
+                                <div class="mt-1">
+                                    <h4 class={cn(text({ style: "bodyMedium" }), "font-display")}>{r.fileName}</h4>
+                                    <p class={cn(text({ style: "bodySmall" }))}>{r.size}</p>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </section>
+            )}
+            <section>
+                <h2 class={cn(text({ style: "displaySmall" }), "mb-4")}>Acerca del Evento</h2>
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <div class="flex-none">
+                        <img src={props.event?.data.logo} alt={`${props.event?.data.name} imagen`} class="size-[150px] rounded-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class={cn(text({ style: "headlineMedium" }))}>{props.event?.data.name}</h3>
+                        <p class={cn(text({ style: "bodyMedium" }), "mb-2")}>{props.event?.data.description}</p>
+                        <a href={`/event/${props.event?.id}`} class={cn(button({ style: "tonal" }))}>Conoce mas del evento</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <aside class="hidden md:block shadow-md rounded-[20px] h-fit">
+            <img src={props.schedule.data.image} alt={`${props.schedule.data.name} previa`} class="rounded-t-[20px]">
+            <div class="p-4 bg-[var(--md-sys-color-primary)] rounded-b-[20px] text-[var(--md-sys-color-on-primary)] space-y-2">           
+                <div class="flex items-start gap-2">
+                    <div>
+                        <Icon name="mdi:location" width={40} height={40} />
+                    </div>
+                    <div>
+                        <p class={cn(text({ style: "bodyMedium" }), "text-[var(--md-sys-color-on-primary)]")}>{props.location?.data.name}</p>
+                        <p class={cn(text({ style: "bodySmall" }), "text-[var(--md-sys-color-on-primary)]")}>{props.location?.data.direction}</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-2">
+                    <div>
+                        <Icon name="mdi:home-variant" width={40} height={40} />
+                    </div>
+                    <div>
+                        <p class={cn(text({ style: "bodyMedium" }), "text-[var(--md-sys-color-on-primary)]")}>{props.stage?.data.name}</p>
+                        <p class={cn(text({ style: "bodySmall" }), "text-[var(--md-sys-color-on-primary)]")}>{props.stage?.data.direction}</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-2">
+                    <div>
+                        <Icon name="mdi:clock-outline" width={40} height={40} />
+                    </div>
+                    <div>
+                        <p class={cn(text({ style: "bodyMedium" }), "text-[var(--md-sys-color-on-primary)]")}>{new Date(props.schedule.data.startDate).toLocaleString("es-BO", { day: "numeric", month: "long", year: "numeric" })}</p>
+                        <p class={cn(text({ style: "bodySmall" }), "text-[var(--md-sys-color-on-primary)]")}>{new Date(props.schedule.data.startDate).toLocaleString("es-BO", { hour: "numeric", minute: "numeric", hour12: true })}</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</Layout>

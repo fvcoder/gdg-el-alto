@@ -26,6 +26,7 @@ const type = Astro.props.image ?? "website";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="generator-author" content="https://fvcoder.com" />
 		<title>{title}</title>
 		<meta name="description" content={description}>
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -34,6 +35,7 @@ const type = Astro.props.image ?? "website";
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<meta name="apple-mobile-web-app-title" content="GDG El Alto" />
 		<link rel="manifest" href="/site.webmanifest" /> 
+		<meta name="robots" content="index,follow" />
 		<script>
 			import {styles} from '@material/web/typography/md-typescale-styles.js';
 

@@ -11,13 +11,13 @@ interface Props {
 const props = Astro.props;
 ---
 <div class="flex items-center gap-2">
-    <div>
-        <img src={props.image} alt={`${props.title} imagen`} class="w-10 rounded-full" />
+    <div class="flex-none" data-src={props.image}>
+        <img src={props.image} alt={`${props.title} imagen`} class="w-10 rounded-full aspect-square object-cover" />
     </div>
     <div class="flex-1">
-        <h4 class={cn(text({ style: "bodyMedium" }))}>{props.title}</h4>
+        <h4 class={cn(text({ style: "bodyMedium" }), "line-clamp-1")}>{props.title}</h4>
         {props.description && (
-            <p class={cn(text({ style: "bodySmall" }))} data-text={props.description}>
+            <p class={cn(text({ style: "bodySmall" }), "line-clamp-1")} data-text={props.description}>
                 {props.description}
             </p>
         )}

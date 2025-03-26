@@ -1,0 +1,98 @@
+---
+import { getCollection } from "astro:content"
+import Layout from "../../layouts/Layout.astro";
+import { cn } from "../../util/cn";
+import { text } from "../../styles/text";
+import { Icon } from "astro-icon/components";
+import InfoUser from "../../components/infoUser.astro";
+
+function getIconFromNetworkProvider(network: string): string {
+    switch (network) {
+        case "github":
+            return "simple-icons:github";
+        case "linkedin":
+            return "simple-icons:linkedin";
+        case "tiktok":
+            return "simple-icons:tiktok";
+        case "twitter":
+            return "simple-icons:x";
+        case "instagram":
+            return "simple-icons:instagram";
+        case "facebook":
+            return "mdi:facebook";
+        case "youtube":
+            return "simple-icons:youtube";
+        default:
+            return "mdi:account";
+    }
+}
+
+export async function getStaticPaths() {
+    const people = await getCollection('people');
+    const schedule = await getCollection('schedule');
+    const events = await getCollection("event");
+    
+    return people.map((p) => {
+        const sch = schedule.filter((s) => s.data.speakers.find((ss) => ss.id === p.id)).map((s) => {
+            const e = events.find((e) => e.id === s.data.eventId.id);
+
+            return {
+                ...s,
+                event: e,
+            }
+        })
+        return {
+            params: {
+                person: p.id,
+            },
+            props: {
+                person: p,
+                schedule: sch
+            }
+        }
+    })
+}
+
+const props = Astro.props;
+---
+<Layout title={`${props.person.data.name} - ${props.person.data.jobTitle}`} description={props.person.data.bio} image={props.person.data.image}>
+    <section class="max-w-5xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+            <div class="flex-none">
+                <img src={props.person.data.image} alt={`${props.person.data.name} imagen`} class="size-[150px] aspect-square rounded-full object-cover">
+            </div>
+            <div>
+                <h1 class={cn(text({ style: "displaySmall" }))}>{props.person.data.name}</h1>
+                <p class={cn(text({ style: "bodyMedium" }), "mb-2")}>{props.person.data.bio}</p>
+                <div class="flex items-center gap-2 flex-wrap">
+                    {props.person.data.networks.map((n) => (
+                        <a href={n.url} target="_blank" class="inline-flex items-center gap-1.5 p-2 pr-2.5 bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] rounded-[25px]">
+                            <span>
+                                <Icon name={getIconFromNetworkProvider(n.provider)} width={14} height={14} />
+                            </span>
+                            <span class={cn(text({ style: "bodySmall" }), "text-[var(--md-sys-color-on-primary-container)] opacity-100")}>{n.username}</span>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-5xl mx-auto px-6 mt-6">
+        <h2 class={cn(text({ style: "displaySmall" }), "mb-2")}>Participo en</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {props.schedule.map((s) => (
+                <article class="rounded-[20px] space-y-4 p-4 border border-[var(--md-sys-color-outline)]">
+                    <a href={`/schedule/${s.id}`} class="hover:underline focus:underline block">
+                        <h3 class={cn(text({ style: "titleLarge" }))}>{s.data.name}</h3>
+                    </a>
+                    <p class={cn(text({ style: "bodyMedium" }))}>{s.data.description}</p>
+                    <InfoUser
+                        title={s.event?.data.name ?? "Evento sin nombre"}
+                        description={new Date(s.data.startDate).toLocaleString("es-BO", { day: "numeric", month: "long", year: "numeric" })}
+                        image={s.event?.data.logo ?? ""}
+                    />
+                </article>
+            ))}
+        </div>
+    </section>
+</Layout>

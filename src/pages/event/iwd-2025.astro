@@ -4,22 +4,32 @@ import Layout from "../../layouts/Layout.astro";
 import { button } from "../../styles/button";
 import { text } from "../../styles/text";
 import { cn } from "../../util/cn";
-import { faq } from "./../../content/faq";
+import { getCollection } from "astro:content";
 
-const calendar = Array.from({ length: 2 }).map((_, i) => {
+const event = (await getCollection('event', (e) => e.id === "iwd-2025"))[0]; 
+const schedule = await getCollection('schedule', (s) => s.data.eventId.id === "iwd-2025");
+const location = (await getCollection('location', (l) => l.id === event.data.location.id))[0];
+const stages = await getCollection("stage");
+const people = await getCollection("people");
+
+const calendar = stages.map((s) => {
   return {
-    name: `Escenario ${i + 1}`,
-    schedule: Array.from({ length: i % 2 ? 3 : 10 }).map((a, i2) => ({
-      id: `ev-${i2}`,
-      name: `Nombre de charla/taller ${i + 1}`,
-      startTime: new Date().toISOString(),
-      personImg: "https://mighty.tools/mockmind-api/content/human/104.jpg"
-    }))
+    name: s.data.name,
+    schedule: schedule.filter((f) => f.data.stageId.id === s.id).map((s2) => {
+      const personImage = people.find((p) => p.id === s2.data.speakers[0].id)?.data.image
+      return {
+        id: s2.id,
+        name: s2.data.name,
+        startTime: s2.data.startDate,
+        endTime: s2.data.endDate,
+        personImage,
+      }
+    })
   }
-})
+}).filter((x) => x.schedule.length)
 ---
 
-<Layout>
+<Layout title={event.data.name} description={event.data.description} image={event.data.image}>
   <section class="max-w-5xl mx-auto px-6 py-[4.625rem] text-center">
     <h1 class={cn(text({ style: "displayMedium" }), "max-w-[677px] mx-auto")}>International Women's Day 2025 El Alto: Redefine Possible</h1>
     <p class={cn(text({ style: "bodyMedium"}), "max-w-[677px] mx-auto mt-4")}>La innovación no tiene límites, nosotras los redefinimos</p>
@@ -30,10 +40,12 @@ const calendar = Array.from({ length: 2 }).map((_, i) => {
   </section>
   <section class="max-w-5xl mx-auto px-6 text-center space-y-4">
     <p class={cn(text({ style: "bodyMedium" }))}>Con el apoyo de</p>
-    <div class="max-w-[677px] mx-auto flex flex-col sm:flex-row gap-8 items-center justify-between">
-      <div class="h-[50px] w-[150px] aspect-video bg-[#D9D9D9] rounded-[20px]"></div>
-      <div class="h-[50px] w-[150px] aspect-video bg-[#D9D9D9] rounded-[20px]"></div>
-      <div class="h-[50px] w-[150px] aspect-video bg-[#D9D9D9] rounded-[20px]"></div>
+    <div class="max-w-[750px] mx-auto grid grid-cols-1 md:grid-cols-3 place-items-center gap-4">
+      {event.data.sponsors.map((s) => (
+        <div title={s.name}>
+          <img src={s.image} alt={s.name} class="max-h-40 object-contain w-[75%] md:w-auto mx-auto" />
+        </div>
+      ))}
     </div>
   </section>
   <section class="max-w-5xl mx-auto px-6 my-6">
@@ -51,7 +63,7 @@ const calendar = Array.from({ length: 2 }).map((_, i) => {
               {c.schedule.map((s) => (
                 <li>
                   <a href={`/schedule/${s.id}`} class="block py-2 px-4">
-                    <User title={s.name} description={new Date(s.startTime).toLocaleString("es-BO", { hour: "numeric", minute: "numeric", hour12: true })} image={s.personImg} />
+                    <User title={s.name} description={new Date(s.startTime).toLocaleString("es-BO", { hour: "numeric", minute: "numeric", hour12: true })} image={s.personImage ?? ""} />
                   </a>
                 </li>  
               ))}
@@ -65,17 +77,17 @@ const calendar = Array.from({ length: 2 }).map((_, i) => {
     <h2 class={cn(text({ style: "displaySmall" }), "mb-8")}>¿Donde lo realizaremos?</h2>
     <div class="grid grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-3 border border-[var(--md-sys-color-primary)] rounded-[21px]">
       <div class="bg-[var(--md-sys-color-primary)] flex flex-col justify-center gap-2 order-2 p-4 rounded-b-[20px] md:rounded-br-none md:rounded-l-[20px] md:min-h-80 md:p-8 md:order-0">
-        <p class={cn(text({ style: "titleLarge" }), "text-[var(--md-sys-color-on-primary)]")}>Shoreline Amphitheatre</p>
-        <p class={cn(text({ style: "titleMedium" }), "text-[var(--md-sys-color-inverse-primary)]")}>One Amphitheatre Pkwy, Mountain View, CA 94043, Estados Unidos</p>
+        <p class={cn(text({ style: "titleLarge" }), "text-[var(--md-sys-color-on-primary)]")}>{location.data.name}</p>
+        <p class={cn(text({ style: "titleMedium" }), "text-[var(--md-sys-color-inverse-primary)]")}>{location.data.direction}</p>
         <div class="pt-2">
-          <a href="https://maps.app.goo.gl/RoWhDxRMmZygx97G6" target="_blank" class={cn(button({ style: "tonal" }))}>
+          <a href={location.data.url} target="_blank" class={cn(button({ style: "tonal" }))}>
             Abrir en Google Maps
           </a>
         </div>
       </div>
       <div class="col-span-2">
-        <a href="https://maps.app.goo.gl/RoWhDxRMmZygx97G6" class="block size-full" target="_blank">
-          <img src="/img/loc.png" alt="" class="size-full object-cover rounded-t-[20px] md:rounded-bl-none md:rounded-r-[20px]" />
+        <a href={location.data.url} class="block size-full" target="_blank">
+          <img src={location.data.image} alt={`${location.data.name} Referencia en Google Maps`} class="size-full object-cover rounded-t-[20px] md:rounded-bl-none md:rounded-r-[20px]" />
         </a>
       </div>
     </div>
@@ -83,7 +95,7 @@ const calendar = Array.from({ length: 2 }).map((_, i) => {
   <section class="max-w-5xl mx-auto px-6 mt-8">
     <h2 class={cn(text({ style: "displaySmall" }), "mb-8")} id="faq">Preguntas Frecuentes</h2>
     <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {faq.map((f) => (
+      {event.data.faq.map((f) => (
         <li>
           <h4 class={cn(text({ style: "titleMedium" }), "mb-2")}>{f.question}</h4>
           <p class={cn(text({ style: "bodyMedium" }))}>{f.answer}</p>
