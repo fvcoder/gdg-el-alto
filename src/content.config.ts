@@ -25,6 +25,8 @@ const event = defineCollection({
     description: z.string(),
     image: z.string(),
     logo: z.string(),
+    startDate: z.string(),
+    endDate: z.string(),
     location: reference("location"),
     sponsors: z.array(
       z.object({

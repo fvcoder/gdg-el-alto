@@ -5,6 +5,7 @@ import { button } from "../../styles/button";
 import { text } from "../../styles/text";
 import { cn } from "../../util/cn";
 import { getCollection } from "astro:content";
+import { CountToDown } from "./../../components/react/countToDown";
 
 const event = (await getCollection('event', (e) => e.id === "road-to-iwd-2025"))[0]; 
 const schedule = await getCollection('schedule', (s) => s.data.eventId.id === "road-to-iwd-2025");
@@ -26,14 +27,57 @@ const calendar = stages.map((s) => {
     })
   }
 }).filter((x) => x.schedule.length)
----
 
+
+const timeStart = new Date(event.data.startDate)
+---
 <Layout title={event.data.name} description={event.data.description} image={event.data.image}>
   <section class="max-w-5xl mx-auto px-6 py-[4.625rem] text-center">
 
     <span class={cn(text({ style: "displayMedium" }), "max-w-[677px] mx-auto")}>👩‍💻🎫😁</span>
     <h1 class={cn(text({ style: "displayMedium" }), "max-w-[677px] mx-auto")}>Road To IWD 2025</h1>
-    <p class={cn(text({ style: "bodyMedium"}), "max-w-[677px] mx-auto mt-4")}>Charlas de innovación y oportunidades</p>
+    <div class="p-4 w-fit mx-auto border-[var(--md-sys-color-primary)] rounded-3xl flex items-center gap-4">
+      <div id="countdown" class="flex items-center gap-4" data-date={event.data.startDate} data-class-number={text({ style: "titleLarge" })} data-class-text={text({ style: "bodySmall" })}>
+        <div class="spinner" id="loading"></div>
+      </div>
+    </div>
+    <script>
+      const countdownElement = document.getElementById("countdown");
+      function startCountdown(targetDate: string) {
+        
+        function updateCountdown() {
+            if (!countdownElement) {
+              return;
+            }
+              const now = new Date().getTime();
+              const distance = new Date(targetDate).getTime() - now;
+              
+              const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+              
+              if (distance < 0) {
+                  countdownElement.innerHTML = "¡Ya inicio el evento!";
+                  return;
+              }
+              
+              countdownElement.innerHTML = "";
+              
+              if (days > 0) countdownElement.innerHTML += `<div style="display: flex;flex-direction: column;justify-content: center;"><span class="${countdownElement.getAttribute("data-class-number")}">${days}</span><span class="${countdownElement.getAttribute("data-class-text")}">Días</span></div>`;
+              if (hours > 0) countdownElement.innerHTML += `<div style="display: flex;flex-direction: column;justify-content: center;"><span class="${countdownElement.getAttribute("data-class-number")}">${hours}</span><span class="${countdownElement.getAttribute("data-class-text")}">Horas</span></div>`;
+              if (minutes > 0) countdownElement.innerHTML += `<div style="display: flex;flex-direction: column;justify-content: center;"><span class="${countdownElement.getAttribute("data-class-number")}">${minutes}</span><span class="${countdownElement.getAttribute("data-class-text")}">Minutos</span></div>`;
+              countdownElement.innerHTML += `<div style="display: flex;flex-direction: column;justify-content: center;"><span class="${countdownElement.getAttribute("data-class-number")}">${seconds}</span><span class="${countdownElement.getAttribute("data-class-text")}">Segundos</span></div>`;
+          }
+          
+          updateCountdown();
+          setInterval(updateCountdown, 1000);
+      }
+      
+      if (countdownElement) {
+        startCountdown(countdownElement.getAttribute("data-date") as string);
+      }
+    </script>
     <div class="flex items-center justify-center mt-4 gap-2">
       <a href="https://gdg.community.dev/events/details/google-gdg-el-alto-presents-international-womens-day-2025-el-alto-redefine-possible/" target="_blank" class={cn(button({ style: "filled" }))}>Reserva un lugar</a>
     </div>
