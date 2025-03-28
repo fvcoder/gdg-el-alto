@@ -4,7 +4,7 @@ import { networkLinks } from '../content/networkLinks';
 ---
 
 <footer class="mt-10 pb-4">
-    <ul class="max-w-5xl mx-auto flex items-center flex-wrap justify-center mb-1 gap-1">
+    <ul class="mx-auto flex items-center flex-wrap justify-center w-full mb-2 md:gap-4">
         {networkLinks.map((item) => (
             <li>
                 <a href={item.href} target="_blank" class="p-2 block rounded-md" aria-label={`Link to social Network: ${item.icon.replace("simple-icons:", "")}`}>
