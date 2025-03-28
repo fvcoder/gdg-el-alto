@@ -1,5 +1,7 @@
 # GDG El Alto
-Descripsion Pendiente...
+Sitio web de GDG El Alto
+
+![preview IWD-2025](./src/assets/readme.png)
 
 ## 🧞 Comandos
 
