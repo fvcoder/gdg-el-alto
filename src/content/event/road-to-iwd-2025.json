@@ -1,29 +1,12 @@
 {
-    "name": "International Women's Day 2025 El Alto: Redefine Possible",
-    "description": "La innovación no tiene límites, nosotras los redefinimos. En esta edición del IWD, conectamos, aprendemos e inspiramos a más mujeres en tecnología. 💡 Talks, paneles y workshops con expertas que están transformando el futuro. ¡Sé parte de esta revolución y descubre cómo puedes Redefinir lo Posible! 💜✨",
+    "name": "Camino a International Women's Day 2025 El Alto: Redefine Possible",
+    "description": "Conoce a tus speakers de la IWD 2025. ¡Sé parte de esta revolución y descubre como puedes Redefinir lo Posible! 💜✨",
     "image": "/WTM-IWD2025-HeroImages-16x9-v2.webp",
     "logo": "/logo/iwd2025.webp",
     "startDate": "2025-04-05T23:00:00.000Z",
     "endDate": "2025-04-06T02:00:00.000Z",
-    "location": "usfa",
-    "sponsors": [
-      {
-        "name": "Google For Developers",
-        "image": "https://cdn.fvcoder.com/gdg-el-alto/google-for-developers.webp"
-      },
-      {
-        "name": "USFA",
-        "image": "https://cdn.fvcoder.com/gdg-el-alto/usfa.webp"
-      },
-      {
-        "name": "AceleraTec",
-        "image": "https://cdn.fvcoder.com/gdg-el-alto/aceleratec.webp"
-      },
-      {
-        "name": "Axs",
-        "image": "https://cdn.fvcoder.com/gdg-el-alto/axs.webp"
-      }
-    ],
+    "location": "live",
+    "sponsors": [],
     "faq": [
         {
           "question": "¿El evento tiene algún costo?",
