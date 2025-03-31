@@ -1,6 +1,7 @@
 {
     "name": "USFA El Alto",
     "direction": "Universidad Privada San Francisco de Asís, Zona Villa Bolívar A, Calle 3, entre la Avenida 6 de Marzo, El Alto",
-    "image": "https://cdn.fvcoder.com/gdg-el-alto/loc.png",    
-    "url": "https://maps.app.goo.gl/Ar5GDG2kiLzc633x5"
+    "image": "https://cdn.fvcoder.com/gdg-el-alto/loc.png",
+    "url": "https://maps.app.goo.gl/Ar5GDG2kiLzc633x5",
+    "reserve": "https://gdg.community.dev/events/details/google-gdg-el-alto-presents-international-womens-day-2025-el-alto-redefine-possible/"
 }

@@ -72,6 +72,7 @@ const location = defineCollection({
     direction: z.string(),
     image: z.string(),
     url: z.string().url().optional(),
+    reserve: z.string().url().optional(),
   }),
 });
 

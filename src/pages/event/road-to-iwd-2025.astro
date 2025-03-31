@@ -5,6 +5,7 @@ import { button } from "../../styles/button";
 import { text } from "../../styles/text";
 import { cn } from "../../util/cn";
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from 'astro:content';
 
 const event = (await getCollection('event', (e) => e.id === "road-to-iwd-2025"))[0];
 const location = (await getCollection('location', (l) => l.id === event.data.location.id))[0];
@@ -17,19 +18,31 @@ const calendar = stages.map((s) => {
     name: s.data.name,
     schedule: schedule.filter((f) => f.data.stageId.id === s.id).map((s2) => {
       const personImage = people.find((p) => p.id === s2.data.speakers[0].id)?.data.image
+      const persons = s2.data.speakers.map((p) => people.find((p2) => p2.id === p.id))
       return {
         id: s2.id,
         name: s2.data.name,
         startTime: s2.data.startDate,
         endTime: s2.data.endDate,
         personImage,
+        people: persons,
       }
     })
   }
 }).filter((x) => x.schedule.length)
 
+const p: typeof people = [];
 
-const timeStart = new Date(event.data.startDate)
+for (const c of calendar) {
+  for (const s of c.schedule) {
+    for (const pe of s.people) {
+      const exist = p.find(p => p.id === pe?.id)
+      if (!exist && pe) p.push(pe)
+    }
+  }
+}
+
+const uniquePeople = Array.from(new Set(p.map(p => p.id)))
 ---
 <Layout title={event.data.name} description={event.data.description} image={event.data.image}>
   <section class="max-w-5xl mx-auto px-6 py-[4.625rem] text-center">
@@ -82,17 +95,11 @@ const timeStart = new Date(event.data.startDate)
       <a href={location.data.url} target="_blank" class={cn(button({ style: "filled" }))}>Ver evento en Vivo</a>
     </div>
   </section>
-  <section class="max-w-5xl mx-auto px-6 text-center space-y-4 hidden">
-    <p class={cn(text({ style: "bodyMedium" }))}>Con el apoyo de</p>
-    <div class="grid grid-cols-2 md:grid-cols-3">
-      
-    </div>
-  </section>
   <section class="max-w-5xl mx-auto px-6 space-y-4">
     <h2 class={cn(text({ style: "displaySmall" }))}>Conoce a tus Speakers</h2>
     <p class={cn(text({ style: "bodyMedium" }))}>Interactúa, haz preguntas y disfruta en comunidad 🤩</p>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4">
-      {people.map((p) => (
+      {p.map((p) => (
         <a href={`/about/${p.id}`} class="relative block">
           <div class="aspect-square">
             <img src={p.data.image} alt={`imagen de perfil de ${p.data.name}`} class="size-full object-cover rounded-2xl" />

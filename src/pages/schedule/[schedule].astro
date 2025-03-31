@@ -34,15 +34,21 @@ export async function getStaticPaths() {
 
 const props = Astro.props;
 ---
-<Layout>
+<Layout title={`${props.schedule.data.name} | ${props.event?.data.name}`} description={props.schedule.data.description} image={props.schedule.data.image}>
     <div class="max-w-5xl px-6 mx-auto mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
         <main class="space-y-6 max-w-5xl mx-auto mt-4 md:col-span-2">
             <section>
                 <h1 class={cn(text({ style: "displayMedium" }), "mb-2")}>{props.schedule.data.name}</h1>
                 <p class={cn(text({ style: "bodyMedium" }))}>{props.schedule.data.description}</p>
                 <div class="flex items-center justify-center md:justify-start mt-4 gap-2">
-                    <a href="https://gdg.community.dev/events/details/google-gdg-el-alto-presents-international-womens-day-2025-el-alto-redefine-possible/" target="_blank" class={cn(button({ style: "filled" }))}>Reserva un lugar</a>
-                    <a href="https://maps.app.goo.gl/RoWhDxRMmZygx97G6" target="_blank" class={cn(button({ style: "outlined" }))}>Abrir en Google Maps</a>
+                    {props.location?.data.reserve && (
+                        <a href={props.location?.data.reserve} target="_blank" class={cn(button({ style: "filled" }))}>Reserva un lugar</a>
+                    )}
+                    {props.location?.data.url && (
+                        <a href={props.location?.data.url} target="_blank" class={cn(button({ style: props.location?.data.reserve ? "outlined" : "filled" }))}>
+                            {/maps/.test(props.location?.data.url) ? "Abrir en Google Maps" : "Ver en vivo"}
+                        </a>
+                    )}
                 </div>
             </section>
             <section>
