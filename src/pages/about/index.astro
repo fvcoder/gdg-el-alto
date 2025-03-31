@@ -1,6 +1,45 @@
 ---
 import { getCollection } from "astro:content"
-const people = await getCollection('event');
----
+import Layout from "../../layouts/Layout.astro";
+import { cn } from "../../util/cn";
+import { text } from "../../styles/text";
+import InfoUser from "../../components/infoUser.astro";
+const events = (await getCollection('event')).sort((a, b) => new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime());
+const location = await getCollection('location');
 
-<div>{JSON.stringify(people)}</div>
+const ev = events.map((s) => ({
+    ...s,
+    location: location.find((l) => l.id === s.data.location.id)
+}));
+---
+<Layout>
+    <section class="mx-auto max-w-5xl px-6 my-4">
+        <img src="https://cdn.fvcoder.com/gdg-el-alto/2024.webp" alt="GDG El Alto 2024" class="w-full h-auto rounded-2xl">
+        <div class="space-y-2">
+            <h1 class={cn(text({ style: "displayMedium" }))}>Acerca de Google Developers Group El Alto</h1>
+            <p class={cn(text({ style: "bodyMedium" }))}>¡Bienvenid@ a Google Developers El Alto! Somos una comunidad apasionada por la tecnología y el desarrollo de software en la  ciudad de El Alto. Nuestro objetivo es reunir a desarrolladores, estudiantes y entusiastas de la tecnología para aprender, colaborar y compartir conocimientos relacionados con las herramientas, plataformas y tecnologías de Google.</p>
+        </div>
+    </section>
+    <section class="mx-auto max-w-5xl px-6 my-4">
+        <h2 class={cn(text({ style: "displaySmall" }), "mb-2")}>Eventos</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {ev.map((s) => (
+                <article class="rounded-[20px] space-y-4 p-4 border border-[var(--md-sys-color-outline)] flex flex-col">
+                    <a href={`/event/${s.id}`} class="hover:underline focus:underline block">
+                        <h3 class={cn(text({ style: "titleLarge" }))}>{s.data.name}</h3>
+                    </a>
+                    <div class="flex-1">
+                        <p class={cn(text({ style: "bodyMedium" }))}>{s.data.description}</p>
+                    </div>
+                    <a href={`/event/${s.id}`} class="hover:underline focus:underline block">
+                        <InfoUser
+                            title={s.location?.data.name ?? "Lugar no especificado"}
+                            description={new Date(s.data.startDate).toLocaleString("es-BO", { day: "numeric", month: "long", year: "numeric", timeZone: "America/New_York" })}
+                            image={s.data.logo}
+                        />
+                    </a>
+                </article>
+            ))}
+        </div>
+    </section>
+</Layout>
