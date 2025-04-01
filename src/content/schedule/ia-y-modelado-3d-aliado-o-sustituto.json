@@ -1,0 +1,13 @@
+{
+    "name": "IA y Modelado 3D: ¿Aliado o Sustituto?",
+    "description": "La inteligencia artificial está revolucionando la forma en que se crean modelos 3D, permitiendo generar objetos, personajes y entornos de manera más rápida y accesible. En esta charla, exploraremos cómo funcionan estas tecnologías, qué herramientas existen y qué tan eficientes son en comparación con el modelado tradicional. Analizaremos las ventajas, como la velocidad y automatización, pero también sus limitaciones. Además, veremos aplicaciones en industrias.",
+    "image": "https://cdn.fvcoder.com/gdg-el-alto/people/karen-quispe-chavez.webp",
+    "eventId": "iwd-2025",
+    "stageId": "usfa-auditorio",
+    "startDate": "2025-04-12T13:00:00.000Z",
+    "endDate": "2025-04-12T21:00:00.000Z",
+    "speakers": [
+        "karen-quispe-chavez"
+    ],
+    "resource": []
+}
