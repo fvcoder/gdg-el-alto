@@ -1,0 +1,28 @@
+{
+    "name": "Damaris Dayana Sarmiento Andrade",
+    "bio": "Reseña corta de un tema relativamente nuevo para nuestro contexto, si escuchaste de Majorana no se estará completamente perdido. Una presentación corta de la importancia de la investigación científica que congracia Física e Ingeniería Electrónica. Una reseña refrescante y algo inquietante.",
+    "image": "https://cdn.fvcoder.com/gdg-el-alto/people/damaris-dayana-sarmiento-andrade.webp",
+    "jobTitle": "Desarrolladora de Software",
+    "networks": [
+        {
+            "provider": "facebook",
+            "username": "Andrade Martina Damaris",
+            "url": "https://www.facebook.com/damaris.martina42.1"
+        },
+        {
+            "provider": "instagram",
+            "username": "damaris_pandora98",
+            "url": "https://www.instagram.com/damaris_pandora98"
+        },
+        {
+            "provider": "youtube",
+            "username": "DamAndrade",
+            "url": "https://www.youtube.com/@damariandr6926"
+        },
+        {
+            "provider": "github",
+            "username": "DamarisMartina",
+            "url": "https://github.com/DamarisMartina"
+        }
+    ]
+}

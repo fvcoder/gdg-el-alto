@@ -1,0 +1,23 @@
+{
+    "name": "Marlene Choque Perez",
+    "bio": "Ingeniera de sistemas, Women teachmakers ambassador, apasionada por la tecnología y la innovación. Trabajo liderando proyectos en frontend y soy miembro de las comunidades GDG Tarija y CAOSBO, donde compartimos conocimiento y experiencias en tecnología. Amante de la lectura, los juegos de mesa y los animalitos. Siempre en busca de nuevos retos y oportunidades para crecer y aprender. ",
+    "image": "https://cdn.fvcoder.com/gdg-el-alto/people/marlene-choque-perez.webp",
+    "jobTitle": "Arquitecta de soluciones",
+    "networks": [
+        {
+            "provider": "linkedin",
+            "username": "Marlene Choque Perez",
+            "url": "https://www.linkedin.com/in/marlenechoqueperez/"
+        },
+        {
+            "provider": "facebook",
+            "username": "Marlen Pérez",
+            "url": "https://www.facebook.com/MarlenCP2509/"
+        },
+        {
+            "provider": "instagram",
+            "username": "marlencp2509",
+            "url": "https://www.instagram.com/marlencp2509/"
+        }
+    ]
+}

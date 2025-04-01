@@ -25,3 +25,8 @@ pnpm-debug.log*
 
 # idx
 .idx/
+
+# invisible 👩‍💻
+data.json
+out.txt
+wa.mjs

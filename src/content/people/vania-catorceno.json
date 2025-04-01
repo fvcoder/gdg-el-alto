@@ -1,0 +1,28 @@
+{
+    "name": "Vania Catorceno",
+    "bio": "Ingeniera de Sistemas. Actualmente trabaja en Jalasoft como desarrolladora de software con el rol de Lead técnico en el área de Frontend. Con mucho entusiasmo por compartir conocimiento y aprender mucho más. Participa activamente en comunidades como Organizer de GDG Cochabamba, WTM Ambassador Cochabamba, Co-Founder de GP4Tech (Girl Power For Technology), Organizer WGJ (Women Game Jam) Bolivia. Ademas de ser Trainer en el area de frontend en JalaUniversity un Bootcamp a nivel LATAM",
+    "image": "https://cdn.fvcoder.com/gdg-el-alto/people/vania-catorceno.webp",
+    "jobTitle": "Engineer Software",
+    "networks": [
+        {
+            "provider": "twitter",
+            "username": "VaniCatorceno",
+            "url": "https://twitter.com/VaniCatorceno"
+        },
+        {
+            "provider": "instagram",
+            "username": "vanicatorceno",
+            "url": "https://www.instagram.com/vanicatorceno"
+        },
+        {
+            "provider": "linkedin",
+            "username": "vanicatorceno",
+            "url": "https://www.linkedin.com/in/vania-marisela-catorceno-carballo-79078a10a/"
+        },
+        {
+            "provider": "facebook",
+            "username": "Vania Catorceno",
+            "url": "ttps://www.facebook.com/vania.catorceno"
+        }
+    ]
+}
