@@ -27,7 +27,7 @@ const calendar = stages.map((s) => {
         personImage,
         people: persons,
       }
-    })
+    }).sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime())
   }
 }).filter((x) => x.schedule.length)
 
