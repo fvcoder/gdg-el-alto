@@ -1,0 +1,13 @@
+{
+    "name": "[IF(CRISIS) THEN {INNOVAR();}] — Oportunidades de emprender con Tecnología",
+    "description": "Una charla sobre cómo las crisis pueden transformarse en oportunidades para emprender con tecnología, explorando formas de innovar en medio del caos y la importancia de validar ideas antes de construir soluciones.",
+    "image": "https://cdn.fvcoder.com/gdg-el-alto/people/nair-perez-poppe.webp",
+    "eventId": "road-to-iwd-2025",
+    "stageId": "live",
+    "startDate": "2025-04-06T00:20:00.000Z",
+    "endDate": "2025-04-06T00:38:00.000Z",
+    "speakers": [
+        "nair-perez-poppe"
+    ],
+    "resource": []
+}   

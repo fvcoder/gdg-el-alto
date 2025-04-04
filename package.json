@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "dev-editor": "tsx watch --tsconfig ./tsconfig.editor.json scripts/editor/index.tsx",
     "build": "astro build",
     "lint": "eslint ./src",
     "lint-fix": "eslint ./src --fix",
@@ -11,14 +12,14 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.2",
+    "@astrojs/react": "^4.2.3",
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.29",
     "@material/web": "2.2.0",
     "@tailwindcss/vite": "^4.0.15",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
-    "astro": "^5.5.4",
+    "astro": "^5.6.0",
     "astro-icon": "^1.1.5",
     "clsx": "^2.1.1",
     "react": "^19.0.0",
@@ -31,8 +32,12 @@
     "@fontsource/nunito": "5.2.5",
     "@fontsource/open-sans": "5.2.5",
     "@fontsource/roboto": "5.2.5",
+    "@hono/node-server": "^1.14.0",
+    "@types/node": "^22.14.0",
     "eslint": "9.22.0",
     "eslint-config-codely": "4.5.0",
-    "husky": "^9.1.7"
+    "hono": "^4.7.5",
+    "husky": "^9.1.7",
+    "tsx": "^4.19.3"
   }
 }
