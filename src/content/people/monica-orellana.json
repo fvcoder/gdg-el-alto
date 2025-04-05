@@ -1,0 +1,18 @@
+{
+  "name": "Monica Orellana",
+  "bio": "Economista, MBA, certificada AWS Cloud Practioner y Google Cloud Digital Leader, Embajadora Women Techmaker, fundadora de Thinkuna, tengo experiencia en análisis empresarial, proyectos de inversión y emprendimiento. Soy una apasionada por la ciencia de datos, el voluntariado, viajar, leer y hacer manualidades.",
+  "image": "https://cdn.fvcoder.com/gdg-el-alto/people/monica-orellana.webp",
+  "jobTitle": "CEO of Thinkuna",
+  "networks": [
+    {
+      "provider": "tiktok",
+      "username": "purischaky",
+      "url": "https://www.tiktok.com/@purischaky"
+    },
+    {
+      "provider": "facebook",
+      "username": "Thinkuna",
+      "url": "https://www.facebook.com/Thinkuna/"
+    }
+  ]
+}

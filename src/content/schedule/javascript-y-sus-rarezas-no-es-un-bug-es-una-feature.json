@@ -1,0 +1,13 @@
+{
+  "name": "JavaScript y sus rarezas: No es un bug, es una feature",
+  "description": "No te preguntaste alguna vez... Por qué JS funciona así?\nEn esta charla exploraremos algunas de sus \"\"rareza-features\"\", entenderemos por qué ocurren y cómo podemos utilizarlas a nuestro favor.\nCómo lo haremos? analizaremos los memes de JS y sus curiosidades. Asi ya no tendrás miedo a las preguntas que te hagan en las próximas entrevistas.",
+  "image": "https://cdn.fvcoder.com/gdg-el-alto/people/vania-catorceno.webp",
+  "stageId": "usfa-auditorio",
+  "eventId": "iwd-2025",
+  "speakers": [
+    "vania-catorceno"
+  ],
+  "startDate": "2025-04-12T15:55:00.000Z",
+  "endDate": "2025-04-12T04:25:00.000Z",
+  "resource": []
+}

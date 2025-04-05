@@ -43,33 +43,34 @@ export const loader: LoaderFunction = async () => {
     let dirList = (await readdir(basePath))
         .filter((f) => !lstatSync(join(basePath, f)).isDirectory())
         .map((x) => x.replace(".json", ""))
+        .sort((a, b) => a.localeCompare(b));
 
-    let stages = await Promise.all((await readdir(stagePath))
+    let stages = (await Promise.all((await readdir(stagePath))
         .filter((f) => !lstatSync(join(stagePath, f)).isDirectory())
         .map(async (x) => {
             return {
                 id: x.replace(".json", ""),
                 data: JSON.parse(String(await readFile(join(stagePath, x))))
             }
-        }))
+        }))).sort((a, b) => a.data.name.localeCompare(b.data.name));
     
-    let events = await Promise.all((await readdir(eventPath))
+    let events = (await Promise.all((await readdir(eventPath))
         .filter((f) => !lstatSync(join(eventPath, f)).isDirectory())
         .map(async (x) => {
             return {
                 id: x.replace(".json", ""),
                 data: JSON.parse(String(await readFile(join(eventPath, x))))
             }
-        }))
+        }))).sort((a, b) => a.data.name.localeCompare(b.data.name));
 
-    let people = await Promise.all((await readdir(peoplePath))
+    let people = (await Promise.all((await readdir(peoplePath))
         .filter((f) => !lstatSync(join(peoplePath, f)).isDirectory())
         .map(async (x) => {
             return {
                 id: x.replace(".json", ""),
                 data: JSON.parse(String(await readFile(join(peoplePath, x))))
             }
-        }))
+        }))).sort((a, b) => a.data.name.localeCompare(b.data.name));
       
     return { dirList, stages, events, people }
 }
