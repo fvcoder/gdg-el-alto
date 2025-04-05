@@ -7,15 +7,7 @@ import { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { join } from "node:path";
 import { lstatSync } from "node:fs";
 import { readdir, writeFile } from "node:fs/promises";
-
-const normalizeUrl = (text: string) => {
-    return text
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-};
+import { normalizeUrl } from "~/util/normalizeUrl";
 
 const schema = z.object({
     id: z.string(),
