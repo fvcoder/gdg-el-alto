@@ -1,13 +1,13 @@
 {
-    "name": "Angular en 20 Minutos: Fundamentos Clave",
-    "description": "Aprenderás a usar Angular para crear aplicaciones web.",
-    "image": "https://cdn.fvcoder.com/gdg-el-alto/people/maria-griselda-garcia-flores.webp",
-    "eventId": "road-to-iwd-2025",
-    "stageId": "live",
-    "startDate": "2025-04-05T23:40:00.000Z",
-    "endDate": "2025-04-06T00:10:00.000Z",
-    "speakers": [
-        "maria-griselda-garcia-flores"
-    ],
-    "resource": []
+  "name": "Angular en 20 Minutos: Fundamentos Clave",
+  "description": "Descubre los pilares de Angular en solo 20 minutos: componentes, directivas y servicios. Domina los fundamentos esenciales para crear apps modernas!!",
+  "image": "https://cdn.fvcoder.com/gdg-el-alto/people/maria-griselda-garcia-flores.webp",
+  "stageId": "live",
+  "eventId": "road-to-iwd-2025",
+  "speakers": [
+    "maria-griselda-garcia-flores"
+  ],
+  "startDate": "2025-04-05T23:40:00.000Z",
+  "endDate": "2025-04-05T23:58:00.000Z",
+  "resource": []
 }

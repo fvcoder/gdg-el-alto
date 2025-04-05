@@ -1,13 +1,13 @@
 {
-    "name": "Descubriendo un nuevo mundo",
-    "description": "Sumergirse en un grupo de estudio de ciencia y tecnología es una excelente manera de ampliar tus conocimientos y habilidades. Para hacerlo de manera efectiva, es fundamental desarrollar habilidades blandas como la comunicación asertiva, el trabajo en equipo y la resolución de conflictos.   y apoyando a tus compañeros. Al hacerlo desarrollarás habilidades técnicas y de liderazgo que te ayudarán a alcanzar tus objetivos académicos y profesionales.",
-    "image": "https://cdn.fvcoder.com/gdg-el-alto/people/nayra-aymara-flores-guerra-1-1.webp",
-    "eventId": "road-to-iwd-2025",
-    "stageId": "live",
-    "startDate": "2025-04-05T23:05:00.000Z",
-    "endDate": "2025-04-05T23:18:00.000Z",
-    "speakers": [
-        "nayra-aymara-flores-guerra"
-    ],
-    "resource": []
-}   
+  "name": "DESCUBRIENDO UN NUEVO MUNDO",
+  "description": "Sumergirse en un grupo de estudio de ciencia y tecnología es una excelente manera de ampliar tus conocimientos y habilidades. Para hacerlo de manera efectiva, es fundamental desarrollar habilidades blandas como la comunicación asertiva, el trabajo en equipo y la resolución de conflictos.   y apoyando a tus compañeros. Al hacerlo desarrollarás habilidades técnicas y de liderazgo que te ayudarán a alcanzar tus objetivos académicos y profesionales.",
+  "image": "https://cdn.fvcoder.com/gdg-el-alto/people/nayra-aymara-flores-guerra-1-1.webp",
+  "stageId": "live",
+  "eventId": "road-to-iwd-2025",
+  "speakers": [
+    "nayra-aymara-flores-guerra"
+  ],
+  "startDate": "2025-04-05T23:05:00.000Z",
+  "endDate": "2025-04-05T11:18:00.000Z",
+  "resource": []
+}
